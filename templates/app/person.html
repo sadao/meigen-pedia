@@ -1,0 +1,204 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>名言ペディア：管理画面</title>
+<meta name="keywords" content="名言, 名言ペディア" />
+<meta name="description" content="名言ペディアは、名言？を記録し生暖かく見守るサイトです。" />
+<link href="/css/templatemo_style.css" rel="stylesheet" type="text/css" />
+
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.formtips.1.2.js"></script>
+
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $('form table tr td input.help').formtips({
+            tippedClass: 'tipped'
+        });
+   });
+    </script>
+
+	<style type="text/css" media="screen">
+		.tipped {
+			color: #BBB;
+		}
+	</style>
+
+    <script type="text/javascript">
+      <!--
+      function deleteSubmit() {
+        document.formid.mode.value = "delete";
+        document.formid.submit();
+      }
+      // -->
+    </script>
+</head>
+<body>
+<div id="templatemo_container">
+<!-- Free CSS Templates @ www.TemplateMo.com -->
+	<div id="templatemo_header">
+    	<div id="site_logo">
+        </div>
+</div> <!-- end of header -->
+    
+    <div id="templatemo_menu">
+        <ul>
+            <li><a href="/app/">Top</a></li>
+            <li><a href="/app/word/">名言</a></li>
+            <li><a href="/app/person/" class="current">発言者</a></li>
+            <li><a href="/app/settings/">設定</a></li>
+        </ul>    	
+    </div> <!-- end of menu -->
+    
+    <div id="templatemo_content">
+		
+        <div id="content_left">
+       	  <div class="left_column_section">
+			<div class="header_01 border_bottom">発言者を{% if current_person %}更新{% else %}登録{% endif %}する</div>
+<!--
+            <div class="margin_bottom_20"></div>
+-->
+
+            <!-- 新規登録 -->
+            <form action="/app/person/" method="post" id="formid" name="formid">
+            <table>
+{% if current_person %}
+              <tr><td><input type="text" name="name" id="i1" class="help" value="{{ current_person.name }}" title="" size="60"/></td></tr>
+              <tr><td><input type="text" name="description" id="i2" class="help" value="{{ current_person.description }}" title="{% if not current_person.description %}説明{% endif %}" size="120" /></td></tr>
+              <tr><td><input type="text" name="twitter_id" id="i2" class="help" value="{{ current_person.twitter_id }}" title="{% if not current_person.twitter_id %}TwitterID{% endif %}" size="60" /></td></tr>
+              <tr><td>
+                <select name="is_lock">
+                  <option value="False" {% if not current_person.is_lock %}selected{% endif %}>自分以外に編集を許可する</option>
+                  <option value="True"{% if current_person.is_lock %}selected{% endif %}>自分以外に編集を許可しない</option>
+                </select>
+                どちらを選択してもポータルへは公開されます
+              </td></tr>
+              <tr><td></td></tr>
+              <tr><td>
+                <button type="submit" class="positive"><img src="/images/action_check.gif" alt=""/>更新</button>
+                <button type="button" class="negative" onClick="deleteSubmit();" {% if meigens %}disabled{% endif %}><img src="/images/action_delete.gif" alt=""/>削除</button>
+              </td></tr>
+              <input type="hidden" name="id" value="{{ current_person.key }}">
+              <input type="hidden" name="mode" value="">
+{% else %}
+              <tr><td><input type="text" name="name" id="i1" class="help" value="" title="名前" size="60"/></td></tr>
+              <tr><td><input type="text" name="description" id="i2" class="help" value="" title="説明" size="120" /></td></tr>
+              <tr><td><input type="text" name="twitter_id" id="i2" class="help" value="" title="TwitterID" size="60" /></td></tr>
+              <tr><td>
+                <select name="is_lock">
+                  <option value="False" selected>自分以外に編集を許可する</option>
+                  <option value="True">自分以外に編集を許可しない</option>
+                </select>
+                どちらを選択してもポータルへは公開されます
+              </td></tr>
+              <tr><td></td></tr>
+              <tr><td><button type="submit" class="positive"><img src="/images/action_check.gif" alt=""/>登録</button></td></tr>
+{% endif %}
+            </table>
+            </form>
+            <!-- 新規登録 -->
+
+        	</div>
+
+{% if current_person %}
+          <div class="margin_bottom_20"></div>
+          <div class="header_02 border_bottom"><p><a href="/person/{{ current_person.key }}">この発言者のポータルサイトへ</a></p></div>
+{% endif %}
+
+          <div class="margin_bottom_20"></div>
+
+      <div class="content_panel_4_col">
+{% if current_person %}
+	    <div class="header_01 border_bottom">この発言者の名言です</div>
+        <div class="content_panel_section margin_right_50">
+          <ul>
+{% if not meigens %}
+            <li>まだ名言が登録されていません！</li>
+{% endif %}
+
+{% for meigen in meigens %}
+  {% if forloop.counter0|isOdd %}
+            <li><a href="/app/word/?id={{ meigen.key}}">{{ meigen.text }}</li>
+  {% endif %}
+{% endfor %}
+          </ul>
+        </div>
+
+        <div class="content_panel_section">
+          <ul>
+{% for meigen in meigens %}
+  {% if forloop.counter0|isEven %}
+            <li><a href="/app/word/?id={{ meigen.key }}">{{ meigen.text }}</li>
+  {% endif %}
+{% endfor %}
+          </ul>
+        </div>
+{% endif %}
+
+        <div class="margin_bottom_20"></div>
+
+        <div class="header_01 border_bottom">あなたの作成した発言者です</div>
+          <div class="content_panel_section margin_right_50">
+            <ul>
+{% if not persons %}
+              <li>まだ作成されていません！</li>
+{% endif %}
+{% for person in persons %}
+  {% if forloop.counter0|isOdd %}
+              <li>
+                <a href="/app/person/?id={{ person.key }}">{{ person.name }}
+                <span>({{ person.description }})</span></a>
+              </li>
+  {% endif %}
+{% endfor %}
+            </ul>
+          </div>
+        
+          <div class="content_panel_section">
+            <ul>
+{% for person in persons %}
+  {% if forloop.counter0|isEven %}
+              <li>
+                <a href="/app/person/?id={{ person.key }}">{{ person.name }}
+                <span>({{ person.description }})</span></a>
+              </li>
+  {% endif %}
+{% endfor %}
+            </ul>
+          </div>
+          
+          <div class="cleaner"></div>
+      </div>
+
+        </div> <!-- end of content left -->
+        
+		<div id="content_right">
+        	<div class="right_column_section">
+{% if meigens %}
+           	  <div class="header_02">FAQ</div>
+              <div class="content">
+                <div class="header_03">削除ボタンが無効？</div>
+                  <p>発言者に所属する名言が１つ以上ある場合は削除できません！</p>
+              </div>
+              <span></span>
+{% else %}
+           	  <div class="header_02">今日の名言</div>
+<center><iframe height="150" name="meigen" src="http://www.earth-words.net/search/homepage-parts.html" style="border-style: solid; border-width: 1px; border-color: #cccccc; margin: 0px 0px 0px 0px;" width="170" border="0" frameborder="0"></iframe><BR><br><FONT size="1" color="#999999">presented by <a target="_blank" href="http://www.earth-words.net/"><FONT color="#999999">地球の名言</FONT></a></FONT></center>
+              <span></span>
+{% endif %}
+            </div>
+        </div> <!-- end of content right -->
+        
+        <div class="cleaner"></div>
+
+	</div> <!-- end of container -->
+    
+    <div id="templatemo_bottom_panel">
+    </div>
+    
+    {% include "../include/portal_footer.html" %}
+
+<!-- Free Website Templates @ TemplateMo.com -->
+</div> <!-- end of container -->
+</body>
+</html>

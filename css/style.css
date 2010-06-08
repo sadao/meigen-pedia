@@ -1,0 +1,255 @@
+﻿@charset "UTF-8";
+
+/* CSS Reset */
+html,body {
+  margin:0;
+  width:100%
+}
+
+body { background: #FFFFFF; }
+
+/* ul,ol,li,dl,dt,dd,h1,h2,h3,h4,h5,h6,h7,p,blockquote{ */
+* {
+  margin:0;
+ padding:0;
+ list-style:none;
+}
+img { border: 0; }
+
+#wrapper{
+  width:800px;
+  margin:auto;
+}
+
+/* topbar */
+#topbar .content { margin: 0em auto; width: 800px; padding: 5px 0px; }
+#topbar .login { float: right; }
+#topbar .welcome { float: left; }
+
+/* topnavi */
+#topnav {
+  text-decoration: none;
+  height: 100px;
+  background: #FFFFEE;
+}
+#topnav .logo { float: left; }
+#topnav .content { padding-top: 50px;; }
+#topnav ul { display: inline; list-style: none; padding-left: 30px; }
+#topnav li { display: inline; font-size: 1.3em; font-weight: bold; font-family: arial, helvetica, sans-serif; color: #A7A7A7; padding-left: 32px; }
+#topnav a:link { text-decoration: none; }
+
+/* main */
+#main { }
+
+/* left-column */
+#left-column{
+  width:200px;
+  float:left;
+}
+#left-column ul { display: inline; list-style: none;}
+#left-column li { display: list-item; font-size: 1.0em; font-weight: bold; font-family: arial, helvetica, sans-serif; color: #A7A7A7; padding-left: 8px; }
+
+#left-column-middle {
+  margin-left: 15px;
+  padding-top: 10px;
+}
+
+#left-column-bottom {
+  margin-left: 10px;
+  padding-top: 10px;
+}
+
+#left-column-google-adsense {
+  margin-left: 10px;
+  padding-top: 70px;
+}
+
+/* right-column */
+#right-column{
+  background: #FFFFFF;
+  float: right;
+  width: 100%;
+  margin-left: -200px;
+  padding-bottom: 10px;
+}
+
+#right-column-padding{
+  padding-top: 20px;
+  padding-left:200px;
+}
+
+#right-column-padding-header { }
+#right-column-padding-content { }
+#right-column-padding-index-contenet { }
+#right-column-padding-footer {
+  display: inline-block;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+#right-column-padding-header .check,
+#right-column-padding-content .check {
+  width: 25px;
+  float:left;
+}
+
+#right-column-padding-header .date,
+#right-column-padding-content .date,
+#right-column-padding-content .item {
+  width: 120px;
+  float:left;
+}
+
+#right-column-padding-header .name,
+#right-column-padding-content .name {
+  float:left;
+}
+#right-column-padding-content .left {
+  float: left;
+  text-align: right;
+  width: 180px;
+}
+
+#right-column-padding-content .right {
+  float: left;
+  text-align: left;
+  width: 300px;
+}
+
+#right-column-padding-index-outline . {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+#right-column-padding-index-outline .title {
+  background: #FFFFF0;
+  font-family: verdana,cursive;
+  font-size: 1.1em;
+}
+
+#right-column-padding-index-outline .text {
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
+
+#right-column-padding-index-contenet .slideshow {
+  height: 132px;
+  width: 232px;
+  margin: auto;
+  margin-top: 20px;
+}
+
+#right-column-padding-index-contenet .slideshow img {
+  padding: 15px;
+  border: 1px solid #ccc;
+  background-color: #eee;
+}
+
+#settings-right-column-footer {
+  padding-top: 20px;
+  padding-left: 130px;
+  margin: auto;
+}
+
+/* button
+http://coliss.com/articles/build-websites/operation/css/848.html
+http://f32.aaa.livedoor.jp/~azusa/exp.php?f=include/css/cssdesign_form/button1.inc&ttl=%E8%A8%AD%E7%BD%AE%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB
+*/
+.buttons {
+    margin:0 0 1em 0; padding:0;
+    clear:both;
+    height:100%;
+    overflow:hidden;
+}
+.buttons * {
+    font-family:verdana,sans-serif;
+}
+.buttons a,
+button { /* 通常時 */
+    float:left;
+    display:block;
+    margin:0 7px 0 0; padding:5px 10px 6px 7px;
+    background-color:#f5f5f5;
+    border-width:1px;
+    border-style:solid;
+    border-color:#eee #dedede #dedede #eee;
+    cursor:pointer;
+    color:#333;
+    font-size:100%;
+    font-weight:bold;
+    line-height:130%;
+    text-decoration:none;
+}
+button {
+    overflow:visible;
+    width:auto;
+    padding:4px 10px 3px 7px;
+    font-weight:bold;
+}
+button[type] {
+    width:auto;
+    padding:5px 10px 5px 7px;
+    line-height:17px;
+}
+*:first-child+html button[type] {
+    padding:4px 10px 3px 7px;
+}
+button img,
+.buttons a img { /* アイコン画像 */
+    width:16px; height:16px;
+    margin:0 3px -3px 0 !important; padding:0 !important;
+    border:none !important;
+}
+button:hover,
+.buttons a:hover { /* マウスオーバー時 */
+    border:1px solid #c2e1ef;
+    color:#336699;
+    background-color:#dff4ff;
+}
+.buttons a:active { /* アクティブ時 */
+    border:1px solid #6299c5;
+    color:#fff;
+    background-color:#6299c5;
+}
+button.positive,
+.buttons a.positive { /* 色テーマ positive */
+    color:#529214;
+}
+.buttons a.positive:hover,
+button.positive:hover {
+    color:#529214;
+    border:1px solid #c6d880;
+    background-color:#e6efc2;
+}
+.buttons a.positive:active {
+    border:1px solid #529214;
+    color:#fff;
+    background-color:#529214;
+}
+.buttons a.negative,
+button.negative { /* 色テーマ nagative */
+    color:#d12f19;
+}
+.buttons a.negative:hover,
+button.negative:hover {
+    border:1px solid #fbc2c4;
+    color:#d12f19;
+    background:#fbe3e4;
+}
+.buttons a.negative:active {
+    border:1px solid #d12f19;
+    color:#fff;
+    background-color:#d12f19;
+}
+
+/* footer */
+#footer {
+  height:80px;
+  background:#FFFFEE;
+  width:100%;
+  float:left;
+}
+
+#footer ul { display: inline; list-style: none;}
+#footer li { display: list-item; font-size: 1.0em; font-weight: bold; font-family: arial, helvetica, sans-serif; color: #A7A7A7; padding-left: 8px; }
+

@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>名言ペディア：名言</title>
+<meta name="keywords" content="名言, 名言ペディア" />
+<meta name="description" content="名言ペディアは、名言？を記録し生暖かく見守るサイトです。" />
+<link href="/css/templatemo_style.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript" src="http://s.hatena.ne.jp/js/HatenaStar.js"></script>
+<script type="text/javascript">
+  Hatena.Star.Token = 'dc5a873464e9780bd2802bf9b81eeb5b52eedcf9';
+  Hatena.Star.SiteConfig = {
+    entryNodes: {
+      'div.star': {
+        uri: 'span a',
+        title: 'span',
+        container: 'span'
+      }
+    }
+  };
+</script>
+
+</head>
+<body>
+<div id="templatemo_container">
+<!-- Free CSS Templates @ www.TemplateMo.com -->
+	<div id="templatemo_header">
+    	<div id="site_logo">
+        </div>
+</div> <!-- end of header -->
+    
+    <div id="templatemo_menu">
+        <ul>
+            <li><a href="/">ホーム</a></li>
+            <li><a href="/word/" class="current">名言</a></li>
+            <li><a href="/person/">発言者</a></li>
+            <li><a href="/about/">About</a></li>
+            <li><a href="/contact/">Contact</a></li>
+        </ul>    	
+    </div> <!-- end of menu -->
+    
+    <div id="templatemo_content">
+		
+        <div id="content_left">
+       	  <div class="left_column_section">
+
+    	<div class="content_panel_4_col">
+	        <div class="header_01 border_bottom">名言一覧</div>
+            <div class="content_panel_section margin_right_50">
+                <ul>
+{% for meigen in meigens %}
+  {% if forloop.counter0|isOdd %}
+                      <li>
+                    	<div class="star"><span><a href="/word/{{ meigen.key }}">{{ meigen.text }}</a></span></div>
+                        <a href="/person/{{ meigen.person.key }}"><span>by&nbsp;{{ meigen.person.name }}</span></a>
+                    </li>
+  {% endif %}
+{% endfor %}
+                </ul>
+             </div>
+        
+            <div class="content_panel_section">
+               <ul>
+{% for meigen in meigens %}
+  {% if forloop.counter0|isEven %}
+                      <li>
+                    	<div class="star"><span><a href="/word/{{ meigen.key }}">{{ meigen.text }}</a></span></div>
+                        <a href="/person/{{ meigen.person.key }}"><span>by&nbsp;{{ meigen.person.name }}</span></a>
+                    </li>
+  {% endif %}
+{% endfor %}
+                </ul>
+          </div>
+          
+          <div class="cleaner"></div>
+        </div>
+
+            <div class="margin_bottom_20"></div>
+      	</div>
+        </div> <!-- end of content left -->
+        
+		<div id="content_right">
+        	<div class="right_column_section">
+           	  <div class="header_02">FAQ</div>
+
+              <div class="content">
+                <div class="header_03">名言の新規登録について</div>
+                <p>管理画面にログインして登録してください。</p>
+              </div>
+
+              <div class="margin_bottom_20"></div>
+
+              <div class="content">
+                <div class="header_03">名言の編集について</div>
+                <p>作成者が編集をロックしない限り、誰でも可能です。</p>
+              </div>
+
+              <span></span>
+
+            </div>
+        </div> <!-- end of content right -->
+        
+        <div class="cleaner"></div>
+
+	</div> <!-- end of container -->
+
+    <div id="templatemo_bottom_panel">
+	</div>
+
+    {% include "../include/portal_footer.html" %}
+
+<!-- Free Website Templates @ TemplateMo.com -->
+</div> <!-- end of container -->
+</body>
+</html>
