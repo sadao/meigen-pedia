@@ -44,9 +44,43 @@
 		
         <div id="content_left">
        	  <div class="left_column_section">
-			<div class="header_01 border_bottom"><div class="star"><span><a href="/word/{{ current_meigen.key }}">{{ current_meigen.text }}</a></span></div></div>
+			<div class="header_00 border_bottom"><div class="star"><span><a href="/word/{{ current_meigen.key }}">{{ current_meigen.text }}</a></span></div></div>
             <p>by&nbsp;{{ current_meigen.person.name }}</p>
           </div>
+          <div class="margin_bottom_20"></div>
+
+        <!-- 同じ発言者の名言 -->
+    	<div class="content_panel_4_col">
+	        <div class="header_01 border_bottom">{{ current_meigen.person.name }}&nbsp;の名言</div>
+            <div class="content_panel_section margin_right_50">
+                <ul>
+{% for meigen in meigens_of_person %}
+  {% if forloop.counter0|isOdd %}
+                      <li>
+                    	<div class="star"><span><a href="/word/{{ meigen.key }}">{{ meigen.text }}</a></span></div>
+                    </li>
+  {% endif %}
+{% endfor %}
+                </ul>
+             </div>
+        
+            <div class="content_panel_section">
+               <ul>
+{% for meigen in meigens_of_person %}
+  {% if forloop.counter0|isEven %}
+                      <li>
+                    	<div class="star"><span><a href="/word/{{ meigen.key }}">{{ meigen.text }}</a></span></div>
+                    </li>
+  {% endif %}
+{% endfor %}
+                </ul>
+          </div>
+
+          <div class="cleaner"></div>
+      </div>
+        <!-- 同じ発言者の名言 -->
+
+
           <div class="margin_bottom_20"></div>
 
     	<div class="content_panel_4_col">

@@ -44,7 +44,7 @@
 		
         <div id="content_left">
        	  <div class="left_column_section">
-			<div class="header_01 border_bottom"><a href="/person/{{ current_person.key }}">{{ current_person.name }}</a></div>
+			<div class="header_00 border_bottom"><a href="/person/{{ current_person.key }}">{{ current_person.name }}</a></div>
             <p>{{ current_person.description }}<br />
 {% if current_person.twitter_id %}
 <script src="http://widgets.twimg.com/j/2/widget.js"></script>
@@ -82,6 +82,39 @@ new TWTR.Widget({
 {% endif %}
             </p>
           </div>
+
+          <div class="margin_bottom_20"></div>
+
+          <!-- 発言者の名言 -->
+    	<div class="content_panel_4_col">
+	        <div class="header_01 border_bottom">{{ current_person.name }}の名言</div>
+            <div class="content_panel_section margin_right_50">
+                <ul>
+{% for meigen in current_meigens %}
+  {% if forloop.counter0|isOdd %}
+                      <li>
+                    	<div class="star"><span><a href="/word/{{ meigen.key }}">{{ meigen.text }}</a></span></div>
+                    </li>
+  {% endif %}
+{% endfor %}
+                </ul>
+             </div>
+        
+            <div class="content_panel_section">
+               <ul>
+{% for meigen in current_meigens %}
+  {% if forloop.counter0|isEven %}
+                    <li>
+                    	<div class="star"><span><a href="/word/{{ meigen.key }}">{{ meigen.text }}</a></span></div>
+                    </li>
+  {% endif %}
+{% endfor %}
+                </ul>
+            </div>
+          </div>
+          
+          <div class="cleaner"></div>
+          <!-- 発言者の名言 -->
 
           <div class="margin_bottom_20"></div>
 

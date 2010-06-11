@@ -1,5 +1,5 @@
 application: meigen-pedia
-version: 2
+version: 3
 runtime: python
 api_version: 1
 
@@ -28,6 +28,9 @@ handlers:
 - url: /contact/
   static_files: templates/portal/contact.html
   upload: templates/portal/contact.html
+
+- url: /html
+  script: html/(.html) 
 
 - url: /.*
   script: main.py
