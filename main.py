@@ -4,7 +4,7 @@ sys.path.insert(0, './')
 
 from google.appengine.ext import webapp
 from google.appengine.ext.webapp.util import run_wsgi_app
-from lib.portal import index,meigen,person
+from lib.portal import index,meigen,person,rss
 from lib.app import settings,mail
 from lib.app.index import AppIndexHandler
 from lib.app.meigen import AppMeigenHandler
@@ -20,6 +20,7 @@ application = webapp.WSGIApplication([
                 (urls.APP_MEIGEN_URL, AppMeigenHandler),
                 (urls.APP_PERSON_URL, AppPersonHandler),
                 (urls.APP_SETTINGS_URL, settings.AppSettingsHandler),
+                (urls.RSS_URL, rss.RssHandler),
                 mail.MailHandler.mapping(),
               ], debug=True)
 
