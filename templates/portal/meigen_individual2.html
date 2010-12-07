@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>名言ペディア：発言者{% if current_person %}：{{ current_person.name }}{% endif %}</title>
+<title>名言ペディア：名言{% if current_meigen %}：{{ current_meigen.text }}{% endif %}</title>
 <meta name="keywords" content="名言, 名言ペディア" />
 <meta name="description" content="名言ペディアは、名言？を記録し生暖かく見守るサイトです。" />
 <link href="/css/templatemo_style.css" rel="stylesheet" type="text/css" />
@@ -34,8 +34,8 @@
     <div id="templatemo_menu">
         <ul>
             <li><a href="/">ホーム</a></li>
-            <li><a href="/word/">名言</a></li>
-            <li><a href="/person/" class="current">発言者</a></li>
+            <li><a href="/word/" class="current">名言</a></li>
+            <li><a href="/person/">発言者</a></li>
             <li><a href="/about/">About</a></li>
             <li><a href="/contact/">Contact</a></li>
         </ul>    	
@@ -45,53 +45,17 @@
 		
         <div id="content_left">
        	  <div class="left_column_section">
-			<div class="header_00 border_bottom"><a href="/person/{{ current_person.key }}">{{ current_person.name }}</a></div>
-            <p>{{ current_person.description }}<br />
-{% if current_person.twitter_id %}
-<script src="http://widgets.twimg.com/j/2/widget.js"></script>
-<script>
-new TWTR.Widget({
-  version: 2,
-  type: 'profile',
-  rpp: 4,
-  interval: 6000,
-  width: 250,
-  height: 300,
-  theme: {
-    shell: {
-      background: '#ffffff',
-      color: '#000000'
-    },
-    tweets: {
-      background: '#ffffff',
-      color: '#000000',
-      links: '#4df008'
-    }
-  },
-  features: {
-    scrollbar: false,
-    loop: false,
-    live: false,
-    hashtags: true,
-    timestamp: true,
-    avatars: false,
-    behavior: 'all'
-  }
-}).render().setUser('{{ current_person.twitter_id }}').start();
-</script>
-
-{% endif %}
-            </p>
+			<div class="header_00 border_bottom"><div class="star"><span><a href="/word/{{ current_meigen.key }}">{{ current_meigen.text }}</a></span></div></div>
+            <p>by&nbsp;{{ current_meigen.person.name }}</p>
           </div>
-
           <div class="margin_bottom_20"></div>
 
-          <!-- 発言者の名言 -->
+        <!-- 同じ発言者の名言 -->
     	<div class="content_panel_4_col">
-	        <div class="header_01 border_bottom">{{ current_person.name }}の名言</div>
+	        <div class="header_01 border_bottom">{{ current_meigen.person.name }}&nbsp;の名言</div>
             <div class="content_panel_section margin_right_50">
                 <ul>
-{% for meigen in current_meigens %}
+{% for meigen in meigens_of_person %}
   {% if forloop.counter0|isOdd %}
                       <li>
                     	<div class="star"><span><a href="/word/{{ meigen.key }}">{{ meigen.text }}</a></span></div>
@@ -103,19 +67,53 @@ new TWTR.Widget({
         
             <div class="content_panel_section">
                <ul>
-{% for meigen in current_meigens %}
+{% for meigen in meigens_of_person %}
   {% if forloop.counter0|isEven %}
-                    <li>
+                      <li>
                     	<div class="star"><span><a href="/word/{{ meigen.key }}">{{ meigen.text }}</a></span></div>
                     </li>
   {% endif %}
 {% endfor %}
                 </ul>
-            </div>
+          </div>
+
+          <div class="cleaner"></div>
+      </div>
+        <!-- 同じ発言者の名言 -->
+
+
+          <div class="margin_bottom_20"></div>
+
+    	<div class="content_panel_4_col">
+	        <div class="header_01 border_bottom">名言一覧</div>
+            <div class="content_panel_section margin_right_50">
+                <ul>
+{% for meigen in meigens %}
+  {% if forloop.counter0|isOdd %}
+                      <li>
+                    	<div class="star"><span><a href="/word/{{ meigen.key }}">{{ meigen.text }}</a></span></div>
+                        <a href="/person/{{ meigen.person.key }}"><span>by&nbsp;{{ meigen.person.name }}</span></a>
+                    </li>
+  {% endif %}
+{% endfor %}
+                </ul>
+             </div>
+        
+            <div class="content_panel_section">
+               <ul>
+{% for meigen in meigens %}
+  {% if forloop.counter0|isEven %}
+                      <li>
+                    	<div class="star"><span><a href="/word/{{ meigen.key }}">{{ meigen.text }}</a></span></div>
+                        <a href="/person/{{ meigen.person.key }}"><span>by&nbsp;{{ meigen.person.name }}</span></a>
+                    </li>
+  {% endif %}
+{% endfor %}
+                </ul>
           </div>
           
           <div class="cleaner"></div>
-          <!-- 発言者の名言 -->
+      </div>
 
         </div> <!-- end of content left -->
 
@@ -124,14 +122,14 @@ new TWTR.Widget({
            	  <div class="header_02">FAQ</div>
 
               <div class="content">
-                <div class="header_03">発言者の新規登録について</div>
+                <div class="header_03">名言の新規登録について</div>
                 <p>管理画面にログインして登録してください。</p>
               </div>
 
               <div class="margin_bottom_20"></div>
 
               <div class="content">
-                <div class="header_03">発言者の編集について</div>
+                <div class="header_03">名言の編集について</div>
                 <p>作成者が編集をロックしない限り、誰でも可能です。</p>
               </div>
 
@@ -145,6 +143,12 @@ new TWTR.Widget({
 	</div> <!-- end of container -->
 
     <div id="templatemo_bottom_panel">
+      <div class="content_panel_4_col">
+        </div>
+          
+        <div class="cleaner"></div>
+        <div class="rc_btn_01"><a href="/word/">もっと見る...</a></div>
+      </div>
     </div>
 
     {% include "../include/portal_footer.html" %}

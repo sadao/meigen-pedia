@@ -117,6 +117,40 @@ new TWTR.Widget({
           <div class="cleaner"></div>
           <!-- 発言者の名言 -->
 
+          <div class="margin_bottom_20"></div>
+
+    	<div class="content_panel_4_col">
+	        <div class="header_01 border_bottom">発言者一覧</div>
+            <div class="content_panel_section margin_right_50">
+                <ul>
+{% for person in persons %}
+  {% if forloop.counter0|isOdd %}
+                      <li>
+                    	<a href="/person/{{ person.key }}">{{ person.name }}
+                        <span>({{ person.description }})</span></a>
+                    </li>
+  {% endif %}
+{% endfor %}
+                </ul>
+             </div>
+        
+            <div class="content_panel_section">
+               <ul>
+{% for person in persons %}
+  {% if forloop.counter0|isEven %}
+                      <li>
+                    	<a href="/person/{{ person.key }}">{{ person.name }}
+                        <span>({{ person.description }})</span></a>
+                    </li>
+  {% endif %}
+{% endfor %}
+                </ul>
+          </div>
+          
+          <div class="cleaner"></div>
+      </div>
+
+          <div class="cleaner"></div>
         </div> <!-- end of content left -->
 
 		<div id="content_right">
