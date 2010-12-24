@@ -5,17 +5,21 @@
 <title>名言ペディア：管理画面</title>
 <meta name="keywords" content="名言, 名言ペディア" />
 <meta name="description" content="名言ペディアは、名言？を記録し生暖かく見守るサイトです。" />
-<link href="/css/templatemo_style.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="/css/templatemo_style.css" />
+    <link rel="stylesheet" type="text/css" href="/css/jquery.autocomplete.css" />
 
     <script type="text/javascript" src="/js/jquery.min.js"></script>
     <script type="text/javascript" src="/js/jquery.formtips.1.2.js"></script>
+    <script type="text/javascript" src="/js/jquery.autocomplete.js"></script>
 
     <script type="text/javascript">
-    $(document).ready(function() {
-        $('form table tr td input.help').formtips({
-            tippedClass: 'tipped'
+        $(document).ready(function() {
+            $('form table tr td input.help').formtips({
+                tippedClass: 'tipped'
+            });
+
+            $('#person').autocomplete('/search/person/', {});
         });
-   });
     </script>
 
 	<style type="text/css" media="screen">
@@ -61,7 +65,7 @@
             <table>
               <tr>
 {% if current_meigen %}
-                <td><input type="text" name="person" id="i1" class="help" value="{{ current_meigen.person.name }}" title="{% if not current_meigen.person.name %}発言者名{% endif %}" size="60"/></td>
+                <td><input type="text" name="person" id="person" class="help" value="{{ current_meigen.person.name }}" title="{% if not current_meigen.person.name %}発言者名{% endif %}" size="60"/></td>
               </tr>
               <tr><td><input type="text" name="text" id="i2" class="help" value="{{current_meigen.text }}" title="" size="120" /></td></tr>
               <tr><td>
@@ -81,7 +85,7 @@
               <input type="hidden" name="id" value="{{ current_meigen.key }}">
               <input type="hidden" name="mode" value="">
 {% else %}
-              <tr><td><input type="text" name="person" id="i1" class="help" value="" title="発言者名" size="60"/></td></tr>
+              <tr><td><input type="text" name="person" id="person" class="help" value="" title="発言者名" size="60"/></td></tr>
               <tr><td><input type="text" name="text" id="i2" class="help" value="" title="名言" size="120" /></td></tr>
               <tr><td>
                 <select name="is_lock">

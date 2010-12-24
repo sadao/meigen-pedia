@@ -9,6 +9,7 @@ from lib.app import settings,mail
 from lib.app.index import AppIndexHandler
 from lib.app.meigen import AppMeigenHandler
 from lib.app.person import AppPersonHandler
+from lib.app.search import SearchPersonHandler
 import urls
 
 # webapp フレームワークのURLマッピングです
@@ -21,6 +22,7 @@ application = webapp.WSGIApplication([
                 (urls.APP_PERSON_URL, AppPersonHandler),
                 (urls.APP_SETTINGS_URL, settings.AppSettingsHandler),
                 (urls.RSS_URL, rss.RssHandler),
+                (urls.SEARCH_PERSON_URL, SearchPersonHandler),
                 mail.MailHandler.mapping(),
               ], debug=True)
 
