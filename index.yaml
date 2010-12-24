@@ -27,3 +27,8 @@ indexes:
   - name: owner
   - name: created_on
     direction: desc
+
+- kind: Person
+  properties:
+  - name: owner
+  - name: name

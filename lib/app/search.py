@@ -27,13 +27,13 @@ class SearchPersonHandler(webapp.RequestHandler):
       return
 
     # 検索文字列に前方一致する発言者名一覧を取得する
-    owned_persons = db.GqlQuery('SELECT * FROM Person WHERE owner = :1 AND name >= :2 AND name < :3', users.get_current_user(), query, query + u'\uFFFD')
-    #query = Person.all()
-    #query.filter( 'owner = ', users.get_current_user() )
-    #query.order('-name')
-    #owned_persons = query.fetch(limit = 30)
+    owned_persons_upper = db.GqlQuery('SELECT * FROM Person WHERE owner = :1 AND name >= :2 AND name < :3', users.get_current_user(), query.upper(), query.upper() + u'\uFFFD')
+    owned_persons_lower = db.GqlQuery('SELECT * FROM Person WHERE owner = :1 AND name >= :2 AND name < :3', users.get_current_user(), query.lower(), query.lower() + u'\uFFFD')
 
     # 結果を出力する
-    for person in owned_persons:
+    for person in (owned_persons_upper):
+      self.response.out.write( person.name + "\n" )
+
+    for person in (owned_persons_lower):
       self.response.out.write( person.name + "\n" )
 
