@@ -8,6 +8,8 @@
 <link href="/css/templatemo_style.css" rel="stylesheet" type="text/css" />
 <link rel="alternate" type="application/rss+xml" title="RSS" href="http://meigen-pedia.appspot.com/rss">
 
+<script type="text/javascript" src="/js/jquery.min.js"></script>
+<script type="text/javascript" src="/js/newmark_jquery.js"></script>
 <script type="text/javascript" src="http://s.hatena.ne.jp/js/HatenaStar.js"></script>
 <script type="text/javascript">
   Hatena.Star.Token = 'dc5a873464e9780bd2802bf9b81eeb5b52eedcf9';
@@ -53,7 +55,7 @@
 {% for meigen in meigens %}
   {% if forloop.counter0|isOdd %}
                       <li>
-                    	<div class="star"><span><a href="/word/{{ meigen.key }}">{{ meigen.text }}</a></span></div>
+                    	<div class="star"><span><a class="newmarkList" title="{{ meigen.created_on|date:"Y年m月d日 H時m分s秒" }}" href="/word/{{ meigen.key }}">{{ meigen.text }}</a></span></div>
                         <a href="/person/{{ meigen.person.key }}"><span>by&nbsp;{{ meigen.person.name }}</span></a>
                     </li>
   {% endif %}
@@ -66,7 +68,7 @@
 {% for meigen in meigens %}
   {% if forloop.counter0|isEven %}
                       <li>
-                    	<div class="star"><span><a href="/word/{{ meigen.key }}">{{ meigen.text }}</a></span></div>
+                    	<div class="star"><span><a class="newmarkList" title="{{ meigen.created_on|date:"Y年m月d日 H時m分s秒" }}" href="/word/{{ meigen.key }}">{{ meigen.text }}</a></span></div>
                         <a href="/person/{{ meigen.person.key }}"><span>by&nbsp;{{ meigen.person.name }}</span></a>
                     </li>
   {% endif %}
