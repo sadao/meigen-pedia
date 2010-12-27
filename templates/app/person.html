@@ -63,7 +63,7 @@
             <form action="/app/person/" method="post" id="formid" name="formid">
             <table>
 {% if current_person %}
-              <tr><td><input type="text" name="name" id="i1" class="help" value="{{ current_person.name }}" title="" size="60"/></td></tr>
+              <tr><td><input type="text" name="name" id="i1" class="help" value="{{ current_person.name }}" title="" size="60" {% if meigens %}disabled{% endif %}/></td></tr>
               <tr><td><input type="text" name="description" id="i2" class="help" value="{{ current_person.description }}" title="{% if not current_person.description %}説明{% endif %}" size="120" /></td></tr>
               <tr><td><input type="text" name="twitter_id" id="i2" class="help" value="{{ current_person.twitter_id }}" title="{% if not current_person.twitter_id %}TwitterID{% endif %}" size="60" /></td></tr>
               <tr><td>
