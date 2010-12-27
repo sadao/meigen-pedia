@@ -46,42 +46,7 @@
         <div id="content_left">
        	  <div class="left_column_section">
 			<div class="header_00 border_bottom"><a href="/person/{{ current_person.key }}">{{ current_person.name }}</a></div>
-            <p>{{ current_person.description }}<br />
-{% if current_person.twitter_id %}
-<script src="http://widgets.twimg.com/j/2/widget.js"></script>
-<script>
-new TWTR.Widget({
-  version: 2,
-  type: 'profile',
-  rpp: 4,
-  interval: 6000,
-  width: 250,
-  height: 300,
-  theme: {
-    shell: {
-      background: '#ffffff',
-      color: '#000000'
-    },
-    tweets: {
-      background: '#ffffff',
-      color: '#000000',
-      links: '#4df008'
-    }
-  },
-  features: {
-    scrollbar: false,
-    loop: false,
-    live: false,
-    hashtags: true,
-    timestamp: true,
-    avatars: false,
-    behavior: 'all'
-  }
-}).render().setUser('{{ current_person.twitter_id }}').start();
-</script>
-
-{% endif %}
-            </p>
+            <p>{{ current_person.description }}</p>
           </div>
 
           <div class="margin_bottom_20"></div>

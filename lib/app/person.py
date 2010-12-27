@@ -6,6 +6,7 @@ from google.appengine.api import users
 from google.appengine.ext import webapp
 from models import Meigen,Person
 from viewer import Viewer
+import urls
 
 TEMPLATE_PATH = 'templates/app/person.html'
 DEFAULT_TWITTER_ID = 'TwitterID'
